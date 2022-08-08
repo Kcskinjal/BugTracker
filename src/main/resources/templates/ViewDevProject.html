@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Developer Project</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<style>
+.MainForm nav {
+	background-color: black;
+}
+
+.MainForm a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.MainForm a:hover {
+	color: #fff;
+}
+
+body {
+	background-image: url('/img/bug2.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.fontWhite {
+	color: white;
+}
+
+table th {
+	color: white;
+}
+</style>
+
+</head>
+<body>
+
+	<section>
+		<form action="ViewDevProject" method="get" th:object="${team}">
+			<div class="MainForm">
+				<div class="container fontWhite">
+					<div class=row>
+						<h1 class="fontWhite">List Of Projects</h1>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-3"></div>
+
+					</div>
+					<label>Team id</label><input type="text" name="teamid"
+						th:value="*{id}" class="form-control" readonly="readonly">
+					<label>Team Name</label><input type="text" name="teamname"
+						th:value="*{teamname}" class="form-control" readonly="readonly">
+					<table class="table table-bordered fontWhite">
+						<thead class="table-dark">
+
+							<tr>
+								<th>Project id</th>
+								<th>Project Name</th>
+								<!-- <th>Project Status</th>
+								<th>Project Technology</th> -->
+								 
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+
+						<tbody>
+							<tr th:each=project:${project}>
+								<td th:text="${project.id}"></td>
+								<td th:text="${project.project_name}"></td>
+								<td><a
+									th:href="@{/viewdevproject/viewbug/{id}(id=${project.id})}"
+									class="btn btn-primary">View Bug</a></td>
+
+
+
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+		</form>
+	</section>
+</body>
+</html>
